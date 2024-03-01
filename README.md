@@ -1,10 +1,10 @@
 # useLocalStorageSync Hook (React)
 
-#### To get started, simply run:
+#### To get started, simply run the following cmd to install the package:
 
-> npm install @cullenbond/use-local-storage-sync
+    npm install @cullenbond/use-local-storage-sync
 
-#### Then import into your react component.
+#### Then import into the hook into your react component.
 
     import { useLocalStorageSync } from "@cullenbond/use-local-storage-sync";
 
