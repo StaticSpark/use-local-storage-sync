@@ -1,6 +1,6 @@
 # useLocalStorageSync Hook (React)
 
-> npm install use-local-storage-sync
+> npm install @cullenbond/use-local-storage-sync
 
 Use Local Storage Sync is compatible with Server Side Rendered Applications, like Next JS.
 
