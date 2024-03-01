@@ -1,36 +1,22 @@
 # useLocalStorageSync Hook (React)
 
-To get started, simply install the package
+#### To get started, simply run:
 
 > npm install @cullenbond/use-local-storage-sync
 
-Use Local Storage Sync is compatible with Server Side Rendered Applications, like Next JS.
-
-Import the react hook into the file
+#### Then import into your react component.
 
     import { useLocalStorageSync } from "@cullenbond/use-local-storage-sync";
 
-Then use the hook to persist and sync data, across tabs and sessions.
-
-## Simple Examples
-
-To get started, simply run:
-
-    npm install @cullenbond/use-local-storage-sync
-
-Then import into your react component.
-
-    import { useLocalStorageSync } from "@cullenbond/use-local-storage-sync";
-
-Example 1:
+#### Example 1:
 
     const [expand, setExpand] = useLocalStorageSync("showButtons", false);
 
-Example 2:
+#### Example 2:
 
     const [persistedCount, setPersistedCount] = useLocalStorageSync("counter", 0);
 
-## Example usage
+## Advanced Loading and State sync usage
 
 An abstract example of load logic using initialization value, to avoid infinite load loops. If you persist and load data to data stores bi-directionally.
 
