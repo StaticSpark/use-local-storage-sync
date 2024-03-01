@@ -51,7 +51,7 @@
 
 Similar to how JS Map() works we will identify the name of our value that is to be stored.
 
-> It is important to note that if you might to be persisting several variations a name, to make sure the name is unique.
+> It is important to note that if you might to be persisting several variations of a name, to make sure the key name is unique.
 
 Example:
 

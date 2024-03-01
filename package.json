@@ -1,6 +1,6 @@
 {
   "name": "@cullenbond/use-local-storage-sync",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "type": "module",
   "description": "React hook to save state to local storage and sync when updates are made to local storage",
   "main": "dist/index.js",
