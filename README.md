@@ -90,8 +90,9 @@ If you are already passing a string type. Skip this method, or pass explicitly n
     value => value
 
 These two examples are the same:
-const [buttonClickCount, setButtonClickCount] = useLocalStorageSync("buttonClickCount", 0, null, null)
-const [buttonClickCount, setButtonClickCount] = useLocalStorageSync("buttonClickCount", 0, value => JSON.parse(value), value => JSON.stringify(value))
+
+    const [buttonClickCount, setButtonClickCount] = useLocalStorageSync("buttonClickCount", 0, null, null)
+    const [buttonClickCount, setButtonClickCount] = useLocalStorageSync("buttonClickCount", 0, value => JSON.parse(value), value => JSON.stringify(value))
 
 ### Avoid errors
 
