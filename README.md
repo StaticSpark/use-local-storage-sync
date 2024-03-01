@@ -16,9 +16,17 @@
 
     const [persistedCount, setPersistedCount] = useLocalStorageSync("persistedCount", 0);
 
+#### Example 3
+
+    const [userId, setUserId] = useLocalStorageSync("userId", "bob");
+
+#### Example 4
+
+    const [groceryList, setGroceryList] = useLocalStorageSync("groceryList", ["Apples", "Oranges", "Bananas"]);
+
 ## Advanced Loading and State sync usage
 
-An abstract example of load logic using initialization value, to avoid infinite load loops. If you persist and load data to data stores bi-directionally.
+> An abstract example of load logic using initialization value, to avoid infinite load loops. If you persist and load data to data stores bi-directionally.
 
     const [showMenu, setShowMenu, showMenuError, showMenuInitialized] = useLocalStorageSync("showSettingsMenu", true)
 
@@ -45,95 +53,55 @@ Similar to how JS Map() works we will identify the name of our value that is to 
 
 > It is important to note that if you might to be persisting several variations a name, to make sure the name is unique.
 
-Examples of this might include:
+Example:
 
     const [buttonClickCount, setButtonClickCount] = useLocalStorageSync("buttonClickCount")
 
-    const [purchaseNowButtonClickCount, setPurchaseNowButtonClickCount] = useLocalStorageSync("purchaseNowButtonClickedCount")
-
-    const [sellButtonClickCount, setSellButtonClickCount] = useLocalStorageSync("sellButtonClickCount")
-
 2. Default Initial Value
 
-The initial value takes precedence if no existing values have been stored so far.
+The initial value takes precedence if no existing values have been stored locally.
 
-In the case a value has been stored, the default value will be overridden by stored state.
+Example:
 
     const [buttonClickCount, setButtonClickCount] = useLocalStorageSync("buttonClickCount", 0)
-
-    const [purchaseNowButtonClickCount, setPurchaseNowButtonClickCount] = useLocalStorageSync("purchaseNowButtonClickedCount", 0)
-
-    const [sellButtonClickCount, setSellButtonClickCount] = useLocalStorageSync("sellButtonClickCount", 0)
 
 3. (Optional) getItem function
 
-Method called when retrieving a stored or synced value, before setting value to be used in state.
+Method called when retrieving a stored value, before setting value to be used in state.
 
-    value => JSON.parse(value)
+> The hook will json.parse() the stored value, by default
 
-These two examples are the same:
+Example:
 
-    const [buttonClickCount, setButtonClickCount] = useLocalStorageSync("buttonClickCount", 0)
     const [buttonClickCount, setButtonClickCount] = useLocalStorageSync("buttonClickCount", 0, value => JSON.parse(value))
-
-This is the default value
 
 4. (Optional) setItem function
 
-Method called when setting a stored or synced value, before setting value.
-We need to save a string to localStorage.
+Method called when setting a stored or synced value before setting the value.
 
-    value => JSON.stringify(value)
+> The hook will json.stringify() the stored value, by default
 
-If you are already passing a string type. Skip this method, or pass explicitly not to use JSON.stringify or items may be quoted twice.
+Example:
 
-    value => value
-
-These two examples are the same:
-
-    const [buttonClickCount, setButtonClickCount] = useLocalStorageSync("buttonClickCount", 0, null, null)
     const [buttonClickCount, setButtonClickCount] = useLocalStorageSync("buttonClickCount", 0, value => JSON.parse(value), value => JSON.stringify(value))
 
-### Avoid errors
+## Avoid errors
 
-Over using the useLocalStorageSync hook can cause potential performance issues.
-
-Do not use useLocalStorageSync with the same key.
-
-For example, if you have a post component that is re-used.
-
-Do not use this hook to store the number of likes, or reactions, etc.
-
-If you do, make sure each instance is using an identifiable unique key.
+- Overusing the hook with the same key can cause performance issues.
+- Do not use with the same key in re-used components.
+  - unless you intentionally want to reference and update the same value
 
 ## Common Usecases
 
-Storing a website setting, that is use to render a site at load.
-
-- isMenuOpen
-- numOfImagesToShow
-
-Storing a value that might be persisted for a redux store to initialize on next load.
-
-- todo list
-- count
-- userID
-
-It is important to note if the window storage object update, all instances of the hook will look at the storage object. Then it will check for updates using the key. Overuse could cause a site to run slower.
+- Storing website settings.
+- Initializing Redux store on load.
+- Persisting data for offline scenarios.
+- Updating state across tabs and windows, in same browser
 
 ## Anti-patterns:
 
-It is not a good idea to use this to store data in re-used component, or a large list of components.
-
-IE: Do NOT use for data within a feed, because each storage update will make a function call to all callers and this data does not need to be persisted. Also be careful if you use the same key name instead of a unique id this will be persisted across globally.
-
-IE: Do not use to store data that does not need to be persisted.
-
-You will want to clean up all this data, if generating unique keys.
-
-This will create unnecessary memory issues persisting data eternally, for a post that you were scrolling past once.
-
-If however you have a favorite list of homes, you could use this and store the data long term in a database and sync the data, but keep a persisted copy locally. When working with service workers or offline and miltiple tabs these becomes extremely useful.
+- Avoid using in a compononent that is re-used often, and key points to the same value.
+- Do not persist data that doesn't need to be stored long-term.
 
 ## Return values
 
