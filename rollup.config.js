@@ -10,6 +10,7 @@ export default [
     output: {
       file: "dist/index.js",
       sourcemap: devMode ? "inline" : false,
+      format: "esm",
     },
     plugins: [
       terser({

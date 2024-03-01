@@ -1,8 +1,12 @@
 # useLocalStorageSync Hook (React)
 
-> npm install useLocalStorageSync
+> npm install use-local-storage-sync
 
 Use Local Storage Sync is compatible with Server Side Rendered Applications, like Next JS.
+
+Import hook into file
+
+    import { useLocalStorageSync } from "use-local-storage-sync";
 
 ## Example usage
 
