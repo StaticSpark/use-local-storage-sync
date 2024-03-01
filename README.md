@@ -10,11 +10,11 @@
 
 #### Example 1:
 
-    const [expand, setExpand] = useLocalStorageSync("showButtons", false);
+    const [showButtons, setShowButtons] = useLocalStorageSync("showButtons", false);
 
 #### Example 2:
 
-    const [persistedCount, setPersistedCount] = useLocalStorageSync("counter", 0);
+    const [persistedCount, setPersistedCount] = useLocalStorageSync("persistedCount", 0);
 
 ## Advanced Loading and State sync usage
 
@@ -36,11 +36,6 @@ An abstract example of load logic using initialization value, to avoid infinite 
             setShowMenu(state.showMenu)
         }
     },[state.showMenu])
-
-A simpler example
-
-    const [defaultSearchTime, setDefaultSearchTime] = useLocalStorageSync("DefaultSearchTime", 60)
-    setDefaultSearchTime(50)
 
 ## Parameters:
 
