@@ -6,7 +6,7 @@ Use Local Storage Sync is compatible with Server Side Rendered Applications, lik
 
 Import hook into file
 
-    import { useLocalStorageSync } from "use-local-storage-sync";
+    import { useLocalStorageSync } from "@cullenbond/use-local-storage-sync";
 
 ## Example usage
 
