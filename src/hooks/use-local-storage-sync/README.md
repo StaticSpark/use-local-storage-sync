@@ -4,6 +4,32 @@
 
 Use Local Storage Sync is compatible with Server Side Rendered Applications, like Next JS.
 
+## Example usage
+
+An abstract example of load logic using initialization value, to avoid infinite load loops. If you persist and load data to data stores bi-directionally.
+
+    const [showMenu, setShowMenu, showMenuError, showMenuInitialized] = useLocalStorageSync("showSettingsMenu", true)
+
+    useEffect(()=>{
+        if(showMenuInitialized){
+            // do things that might otherwise cause side effects
+            // update redux store to localStorage value, after initialization
+        }
+    },[showMenu])
+
+    useEffect(()=>{
+        if(showMenuInitialized){
+            // do things that might otherwise cause side effects
+            // update localStorage value, after initialization and when state is updated
+            setShowMenu(state.showMenu)
+        }
+    },[state.showMenu])
+
+A simpler example
+
+    const [defaultSearchTime, setDefaultSearchTime] = useLocalStorageSync("DefaultSearchTime", 60)
+    setDefaultSearchTime(50)
+
 ## Parameters:
 
 1. Value Key Name
@@ -16,7 +42,7 @@ Examples of this might include:
 
     const [buttonClickCount, setButtonClickCount] = useLocalStorageSync("buttonClickCount")
 
-    const [purachseNowButtonClickC, setPurchaseNowButtonClickCount] = useLocalStorageSync("purchaseNowButtonClickedCount")
+    const [purchaseNowButtonClickCount, setPurchaseNowButtonClickCount] = useLocalStorageSync("purchaseNowButtonClickedCount")
 
     const [sellButtonClickCount, setSellButtonClickCount] = useLocalStorageSync("sellButtonClickCount")
 
@@ -28,7 +54,7 @@ In the case a value has been stored, the default value will be overridden by sto
 
     const [buttonClickCount, setButtonClickCount] = useLocalStorageSync("buttonClickCount", 0)
 
-    const [purachseNowButtonClickC, setPurchaseNowButtonClickCount] = useLocalStorageSync("purchaseNowButtonClickedCount", 0)
+    const [purchaseNowButtonClickCount, setPurchaseNowButtonClickCount] = useLocalStorageSync("purchaseNowButtonClickedCount", 0)
 
     const [sellButtonClickCount, setSellButtonClickCount] = useLocalStorageSync("sellButtonClickCount", 0)
 
@@ -100,3 +126,10 @@ You will want to clean up all this data, if generating unique keys.
 This will create unnecessary memory issues persisting data eternally, for a post that you were scrolling past once.
 
 If however you have a favorite list of homes, you could use this and store the data long term in a database and sync the data, but keep a persisted copy locally. When working with service workers or offline and miltiple tabs these becomes extremely useful.
+
+## Return values
+
+1. value
+2. setValue
+3. error
+4. initialized
