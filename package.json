@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "description": "React hook to save state to local storage and sync when updates are made to local storage",
-  "main": "index.tsx",
+  "main": "dist/index.js",
   "scripts": {
     "build:dev": "rollup -c --environment NODE_ENV:development",
     "build": "rollup -c --environment NODE_ENV:production"
